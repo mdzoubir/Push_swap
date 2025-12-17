@@ -17,10 +17,15 @@ void	add_node_back(t_node **lst, t_node *new);
 int		stack_size(t_node *stack);
 void	free_stack(t_node **stack);
 
-// Stack Operations
+// Swap
 void	swap(t_node **stack);
 void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);
+
+
+// Push
+void pa(t_node **stack_a, t_node **stack_b);
+void pb(t_node **stack_a, t_node **stack_b);
 
 #endif
