@@ -13,20 +13,23 @@ t_node *new_node(int content)
     return (node);
 }
 
-void	add_node_back(t_node **lst, t_node *new)
+void add_node_back(t_node **lst, t_node *new)
 {
-	t_node	*last_node;
+    t_node *last_node;
 
-	if (!new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}	
-	last_node = ft_lstlast(*lst);
-	last_node->next = new;
+    if (!new)
+        return;
+    if (!*lst)
+    {
+        *lst = new;
+        return;
+    }
+    last_node = *lst;
+    while (last_node->next)
+        last_node = last_node->next;
+    last_node->next = new;
 }
+
 
 
 int stack_size(t_node *stack)
