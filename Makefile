@@ -8,10 +8,12 @@ SRC = push_swap.c \
       stack_init.c \
       sort_small.c \
       sort_radix.c \
-      utils.c \
+      utils/ft_split.c \
       operations/swap.c \
       operations/push.c \
       operations/rotate.c \
+      libft/ft_strlen.c \
+      libft/ft_substr.c \
       operations/reverse_rotate.c
 
 OBJ = $(SRC:.c=.o)

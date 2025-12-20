@@ -4,7 +4,7 @@ int is_valid_number(char *str)
 {
 	int i;
 
-	if (!str)
+	if (!str || !str[0])
 		return (0);
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
@@ -36,80 +36,81 @@ int ft_atoi(const char *nptr, int *out)
 		i++;
 	}
 	if (!nptr[i])
-		return 0;
+		return (0);
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		result = result * 10 + (nptr[i] - '0');
 		if (result * sign > 2147483647 || result * sign < -2147483648)
-			return 0;
+			return (0);
 		i++;
 	}
-
 	*out = (int)(result * sign);
-	return 1;
-}
-
-void	free_list(char **str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		free(str[i]);
-	free(str);
-}
-
-int	validate_input(char **av)
-{
-	int **numbers;
-	int i;
-	int j;
-
-	i = 1;
-	while (av[i])
-	{
-		j = 0;
-		numbers = ft_split(av[i], ' ');
-		while (numbers[j])
-		{
-			if (!is_valid_number(numbers[j]))
-				free_list(numbers);
-			free(numbers[j++]);
-		}
-		free(numbers);
-
-		i++;
-	}
 	return (1);
 }
 
+void free_split(char **str)
+{
+	int i;
+
+	if (!str)
+		return;
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+int has_duplicate(t_node *stack, int value)
+{
+	while (stack)
+	{
+		if (stack->value == value)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+static void handle_error(char **args, t_node **stack_a)
+{
+    if (args)
+        free_split(args);
+    free_stack(stack_a);
+    print_error();
+	exit(1);
+}
+static int process_string(char *str, t_node **stack_a)
+{
+    int value;
+    
+    if (!is_valid_number(str))
+        return (0);
+    if (!ft_atoi(str, &value))
+        return (0);
+    if (has_duplicate(*stack_a, value))
+        return (0);
+    add_node_back(stack_a, new_node(value));
+    return (1);
+}
 void parse_args(int ac, char **av, t_node **stack_a)
 {
     char **args;
-    int value;
     int i;
-	int j;
+    int j;
 
-	i = 0;
+    i = 1;
     while (i < ac)
     {
         args = ft_split(av[i], ' ');
+        if (!args || !args[0])
+            handle_error(args, stack_a);
         j = 0;
         while (args[j])
-        {
-            if (!is_valid_number(args[j]) || !ft_atoi(args[j], &value))
-            {
-                free_numbers(args);
-                write(2, "Error\n", 6);
-                exit(1);
-            }
-
-            // TODO: check duplicates here
-            add_node_back(stack_a, new_node(value));
-            free(args[j]);
-            j++;
-        }
-        free(args);
+            if (!process_string(args[j++], stack_a))
+                handle_error(args, stack_a);
+        free_split(args);
 		i++;
     }
 }

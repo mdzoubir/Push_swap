@@ -11,6 +11,10 @@ typedef struct	s_node
 	struct s_node	*next;
 } t_node;
 
+// libft
+size_t	ft_strlen(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
 // Function for node init
 t_node	*new_node(int content);
 void	add_node_back(t_node **lst, t_node *new);
@@ -42,5 +46,11 @@ void rrr(t_node **stack_a, t_node **stack_b);
 
 // utils
 char	**ft_split(char const *s, char c);
+
+// Errors 
+void print_error(void);
+
+// Parsing
+void parse_args(int ac, char **av, t_node **stack_a);
 
 #endif

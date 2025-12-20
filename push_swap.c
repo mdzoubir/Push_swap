@@ -11,8 +11,7 @@ void	print_stack(char *name, t_node *stack)
 	}
 	printf("\n");
 }
-
-int main(void)
+void	test(void)
 {
 	t_node *a = NULL;
 	t_node *b = NULL;
@@ -51,5 +50,16 @@ int main(void)
 
 	free_stack(&a);
 	free_stack(&b);
-	return (0);
+}
+int main(int ac, char **av)
+{
+    t_node *stack_a;
+
+    if (ac < 2)
+        return (0);
+    stack_a = NULL;
+    parse_args(ac, av, &stack_a);
+    print_stack("A", stack_a);
+	free_stack(&stack_a);
+    return (0);
 }
