@@ -3,24 +3,22 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = push_swap.c \
+      sorting/sort_chunk.c \
+      sorting/sort_utils.c \
+      sorting/sort_small.c \
       parse.c \
-      errors.c \
-      stack_init.c \
-      sort_small.c \
-      sort_radix.c \
-      utils/ft_split.c \
+      utils/errors.c \
+      utils/stack_utils.c \
+      utils/is_sorted.c \
       operations/swap.c \
       operations/push.c \
       operations/rotate.c \
+      operations/reverse_rotate.c \
+      libft/ft_split.c \
       libft/ft_strlen.c \
-      libft/ft_substr.c \
-      operations/reverse_rotate.c
+      libft/ft_substr.c
 
 OBJ = $(SRC:.c=.o)
-
-# =========================
-# Rules
-# =========================
 
 all: $(NAME)
 

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int is_valid_number(char *str)
+static int is_valid_number(char *str)
 {
 	int i;
 
@@ -20,7 +20,7 @@ int is_valid_number(char *str)
 	return (1);
 }
 
-int ft_atoi(const char *nptr, int *out)
+static int ft_atoi(const char *nptr, int *out)
 {
 	long result;
 	int sign;
@@ -48,7 +48,7 @@ int ft_atoi(const char *nptr, int *out)
 	return (1);
 }
 
-void free_split(char **str)
+static void free_split(char **str)
 {
 	int i;
 
@@ -63,7 +63,7 @@ void free_split(char **str)
 	free(str);
 }
 
-int has_duplicate(t_node *stack, int value)
+static int has_duplicate(t_node *stack, int value)
 {
 	while (stack)
 	{
@@ -75,42 +75,44 @@ int has_duplicate(t_node *stack, int value)
 }
 static void handle_error(char **args, t_node **stack_a)
 {
-    if (args)
-        free_split(args);
-    free_stack(stack_a);
-    print_error();
+	if (args)
+		free_split(args);
+	free_stack(stack_a);
+	print_error();
 	exit(1);
 }
 static int process_string(char *str, t_node **stack_a)
 {
-    int value;
-    
-    if (!is_valid_number(str))
-        return (0);
-    if (!ft_atoi(str, &value))
-        return (0);
-    if (has_duplicate(*stack_a, value))
-        return (0);
-    add_node_back(stack_a, new_node(value));
-    return (1);
+	int value;
+
+	if (!is_valid_number(str))
+		return (0);
+	if (!ft_atoi(str, &value))
+		return (0);
+	if (has_duplicate(*stack_a, value))
+		return (0);
+	add_node_back(stack_a, new_node(value));
+	return (1);
 }
 void parse_args(int ac, char **av, t_node **stack_a)
 {
-    char **args;
-    int i;
-    int j;
+	char **args;
+	int i;
+	int j;
 
-    i = 1;
-    while (i < ac)
-    {
-        args = ft_split(av[i], ' ');
-        if (!args || !args[0])
-            handle_error(args, stack_a);
-        j = 0;
-        while (args[j])
-            if (!process_string(args[j++], stack_a))
-                handle_error(args, stack_a);
-        free_split(args);
+	i = 1;
+	while (i < ac)
+	{
+		args = ft_split(av[i], ' ');
+		if (!args || !args[0])
+			handle_error(args, stack_a);
+		j = 0;
+		while (args[j])
+		{
+			if (!process_string(args[j++], stack_a))
+				handle_error(args, stack_a);
+		}
+		free_split(args);
 		i++;
-    }
+	}
 }
