@@ -1,6 +1,8 @@
 NAME = push_swap
+BONUS = checker
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+INCLUDES = includes/push_swap.h
 
 SRC = push_swap.c \
       sorting/sort_chunk.c \
@@ -25,7 +27,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.c
+%.o: %.c $(INCLUDES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -35,5 +37,8 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+bonus: $(BONUS)
+      
 
 .PHONY: all clean fclean re

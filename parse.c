@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "includes/push_swap.h"
 
 static int is_valid_number(char *str)
 {
@@ -79,7 +79,6 @@ static void handle_error(char **args, t_node **stack_a)
 		free_split(args);
 	free_stack(stack_a);
 	print_error();
-	exit(1);
 }
 static int process_string(char *str, t_node **stack_a)
 {

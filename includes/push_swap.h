@@ -24,24 +24,24 @@ void	free_stack(t_node **stack);
 int		stack_size(t_node *stack);
 
 // Swap
-void	sa(t_node **stack_a);
-void	sb(t_node **stack_b);
-void	ss(t_node **stack_a, t_node **stack_b);
+void	sa(t_node **stack_a, int print);
+void	sb(t_node **stack_b, int print);
+void	ss(t_node **stack_a, t_node **stack_b, int print);
 
 
 // Push
-void pa(t_node **stack_a, t_node **stack_b);
-void pb(t_node **stack_a, t_node **stack_b);
+void pa(t_node **stack_a, t_node **stack_b, int print);
+void pb(t_node **stack_a, t_node **stack_b, int print);
 
 // rotate 
-void	ra(t_node **stack_a);
-void	rb(t_node **stack_b);
-void	rr(t_node **stack_a, t_node **stack_b);
+void	ra(t_node **stack_a, int print);
+void	rb(t_node **stack_b, int print);
+void	rr(t_node **stack_a, t_node **stack_b, int print);
 
 // reverse rotate 
-void rra(t_node **stack_a);
-void rrb(t_node **stack_b);
-void rrr(t_node **stack_a, t_node **stack_b);
+void rra(t_node **stack_a, int print);
+void rrb(t_node **stack_b, int print);
+void rrr(t_node **stack_a, t_node **stack_b, int print);
 
 // utils
 int is_sorted(t_node *stack);

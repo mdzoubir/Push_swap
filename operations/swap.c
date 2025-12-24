@@ -1,4 +1,4 @@
-#include "../push_swap.h"
+#include "../includes/push_swap.h"
 
 static int swap(t_node **stack)
 {
@@ -17,22 +17,24 @@ static int swap(t_node **stack)
     return (1);
 }
 
-void	sa(t_node **stack_a)
+void	sa(t_node **stack_a, int print)
 {
-	if (swap(stack_a))
-	    write(1, "sa\n", 3);
+	swap(stack_a);
+    if (print)
+        write(1, "sa\n", 3);
 }
 
-void	sb(t_node **stack_b)
+void	sb(t_node **stack_b, int print)
 {
-	if (swap(stack_b))
-	    write(1, "sb\n", 3);
+	swap(stack_b);
+    if (print)
+        write(1, "sb\n", 3);
 }
 
-void ss(t_node **stack_a, t_node **stack_b)
+void ss(t_node **stack_a, t_node **stack_b, int print)
 {
-    int a = swap(stack_a);
-    int b = swap(stack_b);
-    if (a && b)
+    swap(stack_a);
+    swap(stack_b);
+    if (print)
         write(1, "ss\n", 3);
 }

@@ -1,4 +1,4 @@
-#include "../push_swap.h"
+#include "../includes/push_swap.h"
 
 void optimal_rotate(t_node **stack, int pos)
 {
@@ -8,12 +8,12 @@ void optimal_rotate(t_node **stack, int pos)
 	if (pos <= size / 2)
 	{
 		while (pos--)
-			rb(stack);
+			rb(stack, 1);
 	}
 	else
 	{
 		while (pos++ < size)
-			rrb(stack);
+			rrb(stack, 1);
 	}
 }
 
@@ -23,7 +23,7 @@ static int get_chunk_value(t_node *a)
 
 	size = stack_size(a);
 	if (size <= 10)
-		return (1);
+		return (3);
 	else if (size <= 100)
 		return (4);
 	else
@@ -45,27 +45,27 @@ void push_chunks(t_node **a, t_node **b)
 	{
 		if ((*a)->index <= i)
 		{
-			pb(a, b);
+			pb(a, b, 1);
 			i++;
 		}
 		else if ((*a)->index <= i + chunk_size)
 		{
-			pb(a, b);
-			rb(b);
+			pb(a, b, 1);
+			rb(b, 1);
 			i++;
 		}
 		else
-			ra(a);
+			ra(a, 1);
 	}
 }
 
 static void	tmp_push(t_node **a, t_node **b, int max, int pos_prev)
 {
 	optimal_rotate(b, pos_prev);
-	pa(a, b);
+	pa(a, b, 1);
 	optimal_rotate(b, get_pos(*b, max));
-	pa(a, b);
-	sa(a);
+	pa(a, b, 1);
+	sa(a, 1);
 }
 
 void push_back_to_a(t_node **a, t_node **b)
@@ -88,7 +88,7 @@ void push_back_to_a(t_node **a, t_node **b)
 		else
 		{
 			optimal_rotate(b, pos_max);
-			pa(a, b);
+			pa(a, b, 1);
 		}
 	}
 }

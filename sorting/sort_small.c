@@ -1,4 +1,4 @@
-#include "../push_swap.h"
+#include "../includes/push_swap.h"
 
 static int get_min_index(t_node *stack)
 {
@@ -34,7 +34,7 @@ static void push_min(t_node **stack_a, t_node **stack_b)
     {
         while (index > 0)
         {
-            ra(stack_a);
+            ra(stack_a, 1);
             index--;
         }
     }
@@ -42,18 +42,18 @@ static void push_min(t_node **stack_a, t_node **stack_b)
     {
         while (index < size)
         {
-            rra(stack_a);
+            rra(stack_a, 1);
             index++;
         }
     }
-    pb(stack_a, stack_b);
+    pb(stack_a, stack_b, 1);
 }
 
 
 void sort_two(t_node **stack)
 {
     if ((*stack)->value > (*stack)->next->value)
-        sa(stack);
+        sa(stack, 1);
 }
 
 void sort_three(t_node **stack)
@@ -67,28 +67,28 @@ void sort_three(t_node **stack)
     c = (*stack)->next->next->value;
 
     if (a > b && b < c && a < c)
-        sa(stack);
+        sa(stack, 1);
     else if (a > b && b > c)
     {
-        sa(stack);
-        rra(stack);
+        sa(stack, 1);
+        rra(stack, 1);
     }
     else if (a > b && b < c && a > c)
-        ra(stack);
+        ra(stack, 1);
     else if (a < b && b > c && a < c)
     {
-        sa(stack);
-        ra(stack);
+        sa(stack, 1);
+        ra(stack, 1);
     }
     else if (a < b && b > c && a > c)
-        rra(stack);
+        rra(stack, 1);
 }
 
 void sort_four(t_node **stack_a, t_node **stack_b)
 {
     push_min(stack_a, stack_b);
     sort_three(stack_a);
-    pa(stack_a, stack_b);
+    pa(stack_a, stack_b, 1);
 }
 
 void sort_five(t_node **stack_a, t_node **stack_b)
@@ -96,6 +96,6 @@ void sort_five(t_node **stack_a, t_node **stack_b)
     push_min(stack_a, stack_b);
     push_min(stack_a, stack_b);
     sort_three(stack_a);
-    pa(stack_a, stack_b);
-    pa(stack_a, stack_b);
+    pa(stack_a, stack_b, 1);
+    pa(stack_a, stack_b, 1);
 }
