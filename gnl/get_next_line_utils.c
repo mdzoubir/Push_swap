@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzoubir <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mzoubir <mzoubir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 23:05:48 by mzoubir           #+#    #+#             */
-/*   Updated: 2025/11/11 15:39:09 by mzoubir          ###   ########.fr       */
+/*   Updated: 2025/12/28 21:50:16 by mzoubir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s && s[i])
-// 		i++;
-// 	return (i);
-// }
+#include "../includes/checker.h"
 
 char	*ft_strchr(const char *s, int c)
 {

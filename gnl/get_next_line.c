@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzoubir <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mzoubir <mzoubir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:46:04 by mzoubir           #+#    #+#             */
-/*   Updated: 2025/11/10 15:46:11 by mzoubir          ###   ########.fr       */
+/*   Updated: 2025/12/28 21:50:21 by mzoubir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/checker.h"
 
 char	*ft_get_line(char *stash)
 {
@@ -68,13 +68,13 @@ char	*get_next_line(void)
 	char		*line;
 	ssize_t		bytes_read;
 
-	buffer = malloc((size_t)BUFFER_SIZE + 1);
+	buffer = malloc(4);
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;
 	while (!ft_strchr(stash, '\n') && bytes_read > 0)
 	{
-		bytes_read = read(0, buffer, (size_t)BUFFER_SIZE);
+		bytes_read = read(0, buffer, 4);
 		if (bytes_read == -1)
 			return (free(buffer), free(stash), stash = NULL, NULL);
 		buffer[bytes_read] = '\0';

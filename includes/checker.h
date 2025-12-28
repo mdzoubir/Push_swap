@@ -6,7 +6,7 @@
 /*   By: mzoubir <mzoubir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 21:14:24 by mzoubir           #+#    #+#             */
-/*   Updated: 2025/12/28 21:14:49 by mzoubir          ###   ########.fr       */
+/*   Updated: 2025/12/28 21:56:58 by mzoubir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ void				rrb(t_node **stack_b, int print);
 void				rrr(t_node **stack_a, t_node **stack_b, int print);
 
 int					is_sorted(t_node *stack);
+void				free_stack(t_node **stack);
+
+// gnl
+char				*ft_save_extra(char *stash);
+char				*ft_get_line(char *stash);
+char				*ft_strdup(const char *s);
+char				*ft_strjoin(char *s1, char *s2);
+char				*ft_strchr(const char *s, int c);
+size_t				ft_strlen(const char *s);
+char				*get_next_line(void);
 #endif
