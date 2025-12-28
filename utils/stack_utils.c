@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzoubir <mzoubir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 21:13:45 by mzoubir           #+#    #+#             */
+/*   Updated: 2025/12/28 21:13:53 by mzoubir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
-t_node *new_node(int content)
+t_node	*new_node(int content)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (!node)
@@ -13,16 +25,16 @@ t_node *new_node(int content)
 	return (node);
 }
 
-void add_node_back(t_node **lst, t_node *new)
+void	add_node_back(t_node **lst, t_node *new)
 {
-	t_node *last_node;
+	t_node	*last_node;
 
 	if (!new)
-		return;
+		return ;
 	if (!*lst)
 	{
 		*lst = new;
-		return;
+		return ;
 	}
 	last_node = *lst;
 	while (last_node->next)
@@ -30,9 +42,9 @@ void add_node_back(t_node **lst, t_node *new)
 	last_node->next = new;
 }
 
-int stack_size(t_node *stack)
+int	stack_size(t_node *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack)
@@ -43,12 +55,12 @@ int stack_size(t_node *stack)
 	return (i);
 }
 
-void free_stack(t_node **stack)
+void	free_stack(t_node **stack)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (!stack)
-		return;
+		return ;
 	while (*stack)
 	{
 		node = (*stack)->next;

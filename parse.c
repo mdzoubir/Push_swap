@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzoubir <mzoubir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 20:56:11 by mzoubir           #+#    #+#             */
+/*   Updated: 2025/12/28 21:11:03 by mzoubir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/push_swap.h"
 
-static int is_valid_number(char *str)
+static int	is_valid_number(char *str)
 {
-	int i;
+	int	i;
 
 	if (!str || !str[0])
 		return (0);
@@ -20,11 +32,11 @@ static int is_valid_number(char *str)
 	return (1);
 }
 
-static int ft_atoi(const char *nptr, int *out)
+static int	ft_atoi(const char *nptr, int *out)
 {
-	long result;
-	int sign;
-	int i;
+	long	result;
+	int		sign;
+	int		i;
 
 	result = 0;
 	i = 0;
@@ -48,22 +60,7 @@ static int ft_atoi(const char *nptr, int *out)
 	return (1);
 }
 
-static void free_split(char **str)
-{
-	int i;
-
-	if (!str)
-		return;
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-static int has_duplicate(t_node *stack, int value)
+static int	has_duplicate(t_node *stack, int value)
 {
 	while (stack)
 	{
@@ -73,16 +70,10 @@ static int has_duplicate(t_node *stack, int value)
 	}
 	return (0);
 }
-static void handle_error(char **args, t_node **stack_a)
+
+static int	process_string(char *str, t_node **stack_a)
 {
-	if (args)
-		free_split(args);
-	free_stack(stack_a);
-	print_error();
-}
-static int process_string(char *str, t_node **stack_a)
-{
-	int value;
+	int	value;
 
 	if (!is_valid_number(str))
 		return (0);
@@ -93,11 +84,12 @@ static int process_string(char *str, t_node **stack_a)
 	add_node_back(stack_a, new_node(value));
 	return (1);
 }
-void parse_args(int ac, char **av, t_node **stack_a)
+
+void	parse_args(int ac, char **av, t_node **stack_a)
 {
-	char **args;
-	int i;
-	int j;
+	char	**args;
+	int		i;
+	int		j;
 
 	i = 1;
 	while (i < ac)
@@ -109,7 +101,11 @@ void parse_args(int ac, char **av, t_node **stack_a)
 		while (args[j])
 		{
 			if (!process_string(args[j++], stack_a))
-				handle_error(args, stack_a);
+			{
+				free_split(args);
+				free_stack(stack_a);
+				print_error();
+			}
 		}
 		free_split(args);
 		i++;

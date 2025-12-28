@@ -61,12 +61,12 @@ char	*ft_save_extra(char *stash)
 	return (new_stash);
 }
 
-char	*get_next_line()
+char	*get_next_line(void)
 {
-	static char		*stash;
-	char			*buffer;
-	char			*line;
-	ssize_t			bytes_read;
+	static char	*stash;
+	char		*buffer;
+	char		*line;
+	ssize_t		bytes_read;
 
 	buffer = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buffer)

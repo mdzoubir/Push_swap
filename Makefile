@@ -9,7 +9,7 @@ SRC = push_swap.c \
       sorting/sort_utils.c \
       sorting/sort_small.c \
       parse.c \
-      utils/errors.c \
+      utils/helpers.c \
       utils/stack_utils.c \
       utils/is_sorted.c \
       operations/swap.c \
@@ -39,6 +39,6 @@ fclean: clean
 re: fclean all
 
 bonus: $(BONUS)
-      
+
 
 .PHONY: all clean fclean re
