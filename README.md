@@ -103,13 +103,11 @@ Typical operation counts for a well-optimized solution:
 
 AI tools were used in this project for the following purposes:
 
-- **Code debugging**: Identifying logic errors and memory leaks
 - **Algorithm optimization**: Exploring different sorting strategies and their trade-offs
-- **Documentation**: Structuring this README and clarifying technical explanations
 - **Edge case identification**: Generating test cases and corner scenarios
 
 **Specifics:**
-- AI was consulted to understand the Turkish algorithm concept and its application
+- AI was consulted to understand the Chunk algorithm concept and its application
 - Used for refactoring code sections to improve readability
 - Assisted in writing comprehensive error handling for input validation
 - The core sorting logic and implementation were developed independently with AI serving as a learning aid and debugging assistant

@@ -29,83 +29,33 @@ void	optimal_rotate(t_node **stack, int pos)
 	}
 }
 
-static int	get_chunk_value(t_node *a)
+void push_chunks(t_node **a, t_node **b)
 {
-	int	size;
+    int i;
+    int range; 
 
-	size = stack_size(a);
-	if (size <= 10)
-		return (3);
-	else if (size <= 100)
-		return (5);
-	else
-		return (15);
-}
+    i = 0;
+    if (stack_size(*a) <= 100)
+        range = 15; 
+    else
+        range = 40; 
 
-void	get_closest_node(t_node **a, int max)
-{
-	t_node	*tmp;
-	int		first_match;
-	int		last_match;
-	int		best_pos;
-	int		i;
-
-	tmp = *a;
-	first_match = -1;
-	last_match = -1;
-	i = 0;
-	while (tmp)
-	{
-		if (tmp->index <= max)
-		{
-			if (first_match == -1)
-				first_match = i;
-			last_match = i;
-		}
-		tmp = tmp->next;
-		i++;
-	}
-	if (first_match != -1)
-	{
-		if (first_match <= (stack_size(*a) - last_match))
-			while (first_match-- > 0)
-				ra(a, 1);
-		else
-		{
-			best_pos = stack_size(*a) - last_match;
-			while (best_pos-- > 0)
-				rra(a, 1);
-		}
-	}
-}
-
-void	push_chunks(t_node **a, t_node **b)
-{
-	int	size;
-	int	chunk_size;
-	int	i;
-
-	size = stack_size(*a);
-	chunk_size = size / get_chunk_value(*a);
-	if (size % get_chunk_value(*a))
-		chunk_size++;
-	i = 0;
-	while (*a)
-	{
-		if ((*a)->index <= i)
-		{
-			pb(a, b, 1);
-			rb(b, 1);
-			i++;
-		}
-		else if ((*a)->index <= i + chunk_size)
-		{
-			pb(a, b, 1);
-			i++;
-		}
-		else
-			get_closest_node(a, i + chunk_size);
-	}
+    while (*a)
+    {
+        if ((*a)->index <= i)
+        {
+            pb(a, b, 1);
+            rb(b, 1);
+            i++;
+        }
+        else if ((*a)->index <= i + range)
+        {
+            pb(a, b, 1);
+            i++;
+        }
+        else
+            ra(a, 1); 
+    }
 }
 
 static void	tmp_push(t_node **a, t_node **b, int max, int pos_prev)

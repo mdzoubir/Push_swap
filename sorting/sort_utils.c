@@ -69,3 +69,16 @@ int	get_cost(int pos, int size)
 		return (size - pos);
 	return (pos);
 }
+
+int	get_chunk_value(t_node *a)
+{
+	int	size;
+
+	size = stack_size(a);
+	if (size <= 10)
+		return (3);
+	else if (size <= 100)
+		return (5);
+	else
+		return (15);
+}

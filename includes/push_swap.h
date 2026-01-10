@@ -75,6 +75,7 @@ void				sort_five(t_node **stack_a, t_node **stack_b);
 int					get_max_index(t_node *stack);
 int					get_pos(t_node *stack, int index);
 int					get_cost(int pos, int size);
+int					get_chunk_value(t_node *a);
 
 // Sorting
 void				push_chunks(t_node **a, t_node **b);
