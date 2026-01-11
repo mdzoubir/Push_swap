@@ -29,33 +29,32 @@ void	optimal_rotate(t_node **stack, int pos)
 	}
 }
 
-void push_chunks(t_node **a, t_node **b)
+void	push_chunks(t_node **a, t_node **b)
 {
-    int i;
-    int range; 
+	int	i;
+	int	range;
 
-    i = 0;
-    if (stack_size(*a) <= 100)
-        range = 15; 
-    else
-        range = 40; 
-
-    while (*a)
-    {
-        if ((*a)->index <= i)
-        {
-            pb(a, b, 1);
-            rb(b, 1);
-            i++;
-        }
-        else if ((*a)->index <= i + range)
-        {
-            pb(a, b, 1);
-            i++;
-        }
-        else
-            ra(a, 1); 
-    }
+	i = 0;
+	if (stack_size(*a) <= 100)
+		range = 15;
+	else
+		range = 40;
+	while (*a)
+	{
+		if ((*a)->index <= i)
+		{
+			pb(a, b, 1);
+			rb(b, 1);
+			i++;
+		}
+		else if ((*a)->index <= i + range)
+		{
+			pb(a, b, 1);
+			i++;
+		}
+		else
+			ra(a, 1);
+	}
 }
 
 static void	tmp_push(t_node **a, t_node **b, int max, int pos_prev)
@@ -82,8 +81,10 @@ void	push_back_to_a(t_node **a, t_node **b)
 		prev = max - 1;
 		pos_max = get_pos(*b, max);
 		pos_prev = get_pos(*b, prev);
-		if (pos_prev != -1 && get_cost(pos_prev, size)
-			< get_cost(pos_max, size))
+		if (
+			pos_prev != -1 && get_cost(pos_prev, size)
+			< get_cost(pos_max, size)
+		)
 			tmp_push(a, b, max, pos_prev);
 		else
 		{
