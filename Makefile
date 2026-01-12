@@ -10,7 +10,6 @@ INCLUDES = includes/push_swap.h \
 COMMON_SRC = \
 	utils/helpers.c \
 	utils/stack_utils.c \
-	utils/is_sorted.c \
 	operations/swap.c \
 	operations/push.c \
 	operations/rotate.c \

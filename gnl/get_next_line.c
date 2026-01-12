@@ -12,7 +12,7 @@
 
 #include "../includes/checker.h"
 
-char	*ft_get_line(char *stash)
+static char	*ft_get_line(char *stash)
 {
 	size_t	i;
 	char	*line;
@@ -37,7 +37,7 @@ char	*ft_get_line(char *stash)
 	return (line);
 }
 
-char	*ft_save_extra(char *stash)
+static char	*ft_save_extra(char *stash)
 {
 	size_t	i;
 	size_t	j;
@@ -68,7 +68,7 @@ char	*get_next_line(void)
 	char		*line;
 	ssize_t		bytes_read;
 
-	buffer = malloc(4);
+	buffer = malloc(5);
 	if (!buffer)
 		return (NULL);
 	bytes_read = 1;

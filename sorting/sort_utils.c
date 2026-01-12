@@ -34,20 +34,6 @@ void	assign_index(t_node *stack)
 	}
 }
 
-int	get_max_index(t_node *stack)
-{
-	int	max;
-
-	max = -1;
-	while (stack)
-	{
-		if (stack->index > max)
-			max = stack->index;
-		stack = stack->next;
-	}
-	return (max);
-}
-
 int	get_pos(t_node *stack, int index)
 {
 	int	pos;
@@ -68,17 +54,4 @@ int	get_cost(int pos, int size)
 	if (pos > size / 2)
 		return (size - pos);
 	return (pos);
-}
-
-int	get_chunk_value(t_node *a)
-{
-	int	size;
-
-	size = stack_size(a);
-	if (size <= 10)
-		return (3);
-	else if (size <= 100)
-		return (5);
-	else
-		return (15);
 }

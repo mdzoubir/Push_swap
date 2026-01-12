@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-void	optimal_rotate(t_node **stack, int pos)
+static void	optimal_rotate(t_node **stack, int pos)
 {
 	int	size;
 
@@ -77,7 +77,7 @@ void	push_back_to_a(t_node **a, t_node **b)
 	while (*b)
 	{
 		size = stack_size(*b);
-		max = get_max_index(*b);
+		max = size - 1;
 		prev = max - 1;
 		pos_max = get_pos(*b, max);
 		pos_prev = get_pos(*b, prev);

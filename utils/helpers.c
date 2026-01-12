@@ -42,11 +42,6 @@ void	handle_error(char **args, t_node **stack_a)
 	if (args)
 		free_split(args);
 	free_stack(stack_a);
-	print_error();
-}
-
-void	print_error(void)
-{
 	write(2, "Error\n", 6);
 	exit(1);
 }
