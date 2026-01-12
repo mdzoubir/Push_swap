@@ -12,7 +12,7 @@
 
 #include "includes/push_swap.h"
 
-void	pick_sort(int size, t_node **stack_a, t_node **stack_b)
+static void	pick_sort(int size, t_node **stack_a, t_node **stack_b)
 {
 	if (size == 2)
 		sort_two(stack_a);
@@ -33,7 +33,6 @@ int	main(int ac, char **av)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
-	int		size;
 
 	if (ac < 2)
 		return (0);
@@ -41,10 +40,12 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	parse_args(ac, av, &stack_a);
 	if (is_sorted(stack_a))
-		return (free_stack(&stack_a), 0);
-	size = stack_size(stack_a);
+	{
+		free_stack(&stack_a);
+		return (0);
+	}
 	assign_index(stack_a);
-	pick_sort(size, &stack_a, &stack_b);
+	pick_sort(stack_size(stack_a), &stack_a, &stack_b);
 	free_stack(&stack_a);
 	return (0);
 }

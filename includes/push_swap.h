@@ -59,7 +59,7 @@ int					is_sorted(t_node *stack);
 // helpres
 void				print_error(void);
 void				free_split(char **str);
-int					get_min_index(t_node *stack);
+int					get_min_pos(t_node *stack);
 void				handle_error(char **args, t_node **stack_a);
 
 // Parsing

@@ -12,26 +12,29 @@
 
 #include "../includes/push_swap.h"
 
-int	get_min_index(t_node *stack)
+int	get_min_pos(t_node *stack)
 {
-	int	min;
-	int	index;
-	int	i;
+    int min_rank;
+    int min_pos;
+    int current_pos;
 
-	min = stack->value;
-	index = 0;
-	i = 0;
-	while (stack)
-	{
-		if (stack->value < min)
-		{
-			min = stack->value;
-			index = i;
-		}
-		stack = stack->next;
-		i++;
-	}
-	return (index);
+    if (!stack)
+        return (-1);
+    min_rank = stack->index; 
+    min_pos = 0;
+    current_pos = 0;
+
+    while (stack)
+    {
+        if (stack->index < min_rank)
+        {
+            min_rank = stack->index;
+            min_pos = current_pos;
+        }
+        stack = stack->next;
+        current_pos++;
+    }
+    return (min_pos);
 }
 
 void	handle_error(char **args, t_node **stack_a)
