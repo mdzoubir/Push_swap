@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzoubir <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 23:05:48 by mzoubir           #+#    #+#             */
-/*   Updated: 2026/01/09 13:34:34 by mzoubir          ###   ########.fr       */
+/*   Updated: 2026/01/13 16:29:51 by mzoubir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../../includes/checker_bonus.h"
 
 char	*ft_strchr(const char *s, int c)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzoubir <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:46:04 by mzoubir           #+#    #+#             */
-/*   Updated: 2026/01/09 13:34:13 by mzoubir          ###   ########.fr       */
+/*   Updated: 2026/01/13 16:29:43 by mzoubir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../../includes/checker_bonus.h"
 
 static char	*ft_get_line(char *stash)
 {
@@ -74,7 +74,7 @@ char	*get_next_line(void)
 	bytes_read = 1;
 	while (!ft_strchr(stash, '\n') && bytes_read > 0)
 	{
-		bytes_read = read(0, buffer, 4);
+		bytes_read = read(0, buffer, 1);
 		if (bytes_read == -1)
 			return (free(buffer), free(stash), stash = NULL, NULL);
 		buffer[bytes_read] = '\0';
@@ -83,5 +83,7 @@ char	*get_next_line(void)
 	free(buffer);
 	if (!stash || *stash == '\0')
 		return (free(stash), stash = NULL, NULL);
-	return (line = ft_get_line(stash), stash = ft_save_extra(stash), line);
+	line = ft_get_line(stash);
+	stash = ft_save_extra(stash);
+	return (line);
 }

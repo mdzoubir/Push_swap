@@ -5,7 +5,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = includes/push_swap.h \
-			includes/checker.h
+			includes/checker_bonus.h
 
 COMMON_SRC = \
 	utils/helpers.c \
@@ -28,9 +28,9 @@ SRC = push_swap.c \
 
 OBJ = $(SRC:.c=.o) $(COMMON_OBJ)
 
-BONUS_SRC = bonus/checker.c \
-            gnl/get_next_line.c \
-            gnl/get_next_line_utils.c
+BONUS_SRC = bonus/checker_bonus.c \
+            bonus/gnl/get_next_line_bonus.c \
+            bonus/gnl/get_next_line_utils_bonus.c
 
 BONUS_OBJ = $(BONUS_SRC:.c=.o)  $(COMMON_OBJ)
 
