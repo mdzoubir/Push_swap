@@ -12,22 +12,22 @@
 
 #include "includes/push_swap.h"
 
-static int  is_valid_number(char *str)
+static int	is_valid_number(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (str[i] == '+' || str[i] == '-')
-        i++;
-    if (!str[i])
-        return (0);
-    while (str[i])
-    {
-        if (str[i] < '0' || str[i] > '9')
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 static int	ft_atoi(const char *nptr, int *out)

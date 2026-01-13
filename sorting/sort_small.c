@@ -38,31 +38,31 @@ void	sort_two(t_node **stack)
 		sa(stack, 1);
 }
 
-void    sort_three(t_node **stack)
+void	sort_three(t_node **stack)
 {
-    int a;
-    int b;
-    int c;
+	int	a;
+	int	b;
+	int	c;
 
-    a = (*stack)->index;
-    b = (*stack)->next->index;
-    c = (*stack)->next->next->index;
-    if (a > b && b < c && a < c)
-        sa(stack, 1);
-    else if (a > b && b > c)
-    {
-        sa(stack, 1);
-        rra(stack, 1);
-    }
-    else if (a > b && b < c && a > c)
-        ra(stack, 1);
-    else if (a < b && b > c && a < c)
-    {
-        sa(stack, 1);
-        ra(stack, 1);
-    }
-    else if (a < b && b > c && a > c)
-        rra(stack, 1);
+	a = (*stack)->index;
+	b = (*stack)->next->index;
+	c = (*stack)->next->next->index;
+	if (a > b && b < c && a < c)
+		sa(stack, 1);
+	else if (a > b && b > c)
+	{
+		sa(stack, 1);
+		rra(stack, 1);
+	}
+	else if (a > b && b < c && a > c)
+		ra(stack, 1);
+	else if (a < b && b > c && a < c)
+	{
+		sa(stack, 1);
+		ra(stack, 1);
+	}
+	else if (a < b && b > c && a > c)
+		rra(stack, 1);
 }
 
 void	sort_four(t_node **stack_a, t_node **stack_b)

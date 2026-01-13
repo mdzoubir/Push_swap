@@ -38,32 +38,32 @@ static void	tmp_push(t_node **a, t_node **b, int max, int pos_prev)
 	sa(a, 1);
 }
 
-void push_chunks(t_node **a, t_node **b)
+void	push_chunks(t_node **a, t_node **b)
 {
-    int i;
-    int range;
+	int	i;
+	int	range;
 
-    i = 0;
-    if (stack_size(*a) <= 100)
-        range = 15; 
-    else
-        range = 40;
-    while (*a)
-    {
-        if ((*a)->index <= i)
-        {
-            pb(a, b, 1);
-            rb(b, 1);
-            i++;
-        }
-        else if ((*a)->index <= i + range)
-        {
-            pb(a, b, 1);
-            i++;
-        }
-        else
-            ra(a, 1);
-    }
+	i = 0;
+	if (stack_size(*a) <= 100)
+		range = 15;
+	else
+		range = 40;
+	while (*a)
+	{
+		if ((*a)->index <= i)
+		{
+			pb(a, b, 1);
+			rb(b, 1);
+			i++;
+		}
+		else if ((*a)->index <= i + range)
+		{
+			pb(a, b, 1);
+			i++;
+		}
+		else
+			ra(a, 1);
+	}
 }
 
 void	push_back_to_a(t_node **a, t_node **b)
