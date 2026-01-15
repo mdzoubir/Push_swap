@@ -29,6 +29,7 @@ SRC = push_swap.c \
 OBJ = $(SRC:.c=.o) $(COMMON_OBJ)
 
 BONUS_SRC = bonus/checker_bonus.c \
+			bonus/helper_bonus.c \
             bonus/gnl/get_next_line_bonus.c \
             bonus/gnl/get_next_line_utils_bonus.c
 

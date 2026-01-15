@@ -12,25 +12,17 @@
 
 #include "../includes/checker_bonus.h"
 
-static int	ft_strcmp(const char *s1, const char *s2)
+static void	error(t_node **a, t_node **b, char *line)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-static void	error(t_node **a, t_node **b)
-{
+	if (line)
+		free(line);
 	free_stack(a);
 	free_stack(b);
 	write(2, "Error\n", 6);
 	exit(1);
 }
 
-static int	parse_command(t_node **a, t_node **b, char *line)
+static void	parse_command(t_node **a, t_node **b, char *line)
 {
 	if (!ft_strcmp(line, "sa\n"))
 		sa(a, 0);
@@ -54,27 +46,43 @@ static int	parse_command(t_node **a, t_node **b, char *line)
 		rrb(b, 0);
 	else if (!ft_strcmp(line, "rrr\n"))
 		rrr(a, b, 0);
-	else
-		return (0);
-	return (1);
+}
+
+static int	is_valid_instruction(char *line)
+{
+	return (!ft_strcmp(line, "sa\n") || !ft_strcmp(line, "sb\n")
+		|| !ft_strcmp(line, "ss\n") || !ft_strcmp(line, "pa\n")
+		|| !ft_strcmp(line, "pb\n") || !ft_strcmp(line, "ra\n")
+		|| !ft_strcmp(line, "rb\n") || !ft_strcmp(line, "rr\n")
+		|| !ft_strcmp(line, "rra\n") || !ft_strcmp(line, "rrb\n")
+		|| !ft_strcmp(line, "rrr\n"));
 }
 
 static void	read_and_execute(t_node **a, t_node **b)
 {
 	char	*line;
-	int		error_flag;
+	t_ope	*lst;
+	t_ope	*tmp;
 
-	error_flag = 0;
-	line = get_next_line();
+	lst = NULL;
+	line = get_next_line(0);
 	while (line != NULL)
 	{
-		if (!error_flag && !parse_command(a, b, line))
-			error_flag = 1;
-		free(line);
-		line = get_next_line();
+		if (!is_valid_instruction(line))
+		{
+			free_cmd_list(&lst);
+			error(a, b, line);
+		}
+		add_cmd_back(&lst, line);
+		line = get_next_line(0);
 	}
-	if (error_flag)
-		error(a, b);
+	tmp = lst;
+	while (tmp)
+	{
+		parse_command(a, b, tmp->line);
+		tmp = tmp->next;
+	}
+	free_cmd_list(&lst);
 }
 
 int	main(int ac, char **av)
