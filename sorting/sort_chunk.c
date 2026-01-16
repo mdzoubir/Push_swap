@@ -38,10 +38,39 @@ static void	tmp_push(t_node **a, t_node **b, int max, int pos_prev)
 	sa(a, 1);
 }
 
+// static int	close_node(t_node *stack_a, int min, int max)
+// {
+//     t_node  *tmp;
+//     int     index;
+//     int     first_match;
+//     int     last_match;
+
+//     tmp = stack_a;
+//     index = 0;
+//     first_match = -1;
+//     last_match = -1;
+//     while (tmp)
+//     {
+//         if (tmp->value >= min && tmp->value <= max)
+//         {
+//             if (first_match == -1)
+//                 first_match = index;
+//             last_match = index;
+//         }
+//         tmp = tmp->next;
+//         index++;
+//     }
+//     if (first_match == -1)
+//         return (0);
+//     if (first_match <= (stack_size(stack_a) - last_match))
+//         return (1);
+//     return (2);
+// }
+
 void	push_chunks(t_node **a, t_node **b)
 {
 	int	i;
-	int	range;
+	int	range;	
 
 	i = 0;
 	if (stack_size(*a) <= 100)
