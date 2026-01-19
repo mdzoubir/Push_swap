@@ -73,9 +73,8 @@ void	push_chunks(t_node **a, t_node **b)
 	int	range;
 
 	i = 0;
-	if (stack_size(*a) <= 100)
-		range = 15;
-	else
+	range = 15;
+	if (stack_size(*a) > 100)
 		range = 40;
 	while (*a)
 	{

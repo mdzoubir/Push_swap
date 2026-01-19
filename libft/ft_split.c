@@ -33,11 +33,12 @@ static int	count_words(char const *s, char c)
 	return (counter);
 }
 
-static void	free_memory(char **ptr, int c)
+static int	free_memory(char **ptr, int c)
 {
 	while (c >= 0)
 		free(ptr[c--]);
 	free(ptr);
+	return (0);
 }
 
 static int	fill_split(char **ptr, const char *s, char c)
@@ -57,10 +58,7 @@ static int	fill_split(char **ptr, const char *s, char c)
 				j++;
 			ptr[counter] = ft_substr(s, i, j);
 			if (!ptr[counter++])
-			{
-				free_memory(ptr, counter - 2);
-				return (0);
-			}
+				return (free_memory(ptr, counter - 2));
 			i += j;
 		}
 		else
