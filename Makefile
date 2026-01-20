@@ -1,59 +1,62 @@
-NAME = push_swap
-BONUS = checker
+NAME        = push_swap
+BONUS_NAME  = checker
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror
 
-INCLUDES = includes/push_swap.h \
-			includes/checker_bonus.h
+HEADER_M    = includes/push_swap.h
+HEADER_B    = includes/checker_bonus.h
 
-COMMON_SRC = \
-	utils/helpers.c \
-	utils/stack_utils.c \
-	operations/swap.c \
-	operations/push.c \
-	operations/rotate.c \
-	operations/reverse_rotate.c \
-	libft/ft_split.c \
-	libft/ft_strlen.c \
-	libft/ft_substr.c \
-	parse.c
+COMMON_SRC  = utils/helpers.c \
+              utils/stack_utils.c \
+              operations/swap.c \
+              operations/push.c \
+              operations/rotate.c \
+              operations/reverse_rotate.c \
+              libft/ft_split.c \
+              libft/ft_strlen.c \
+              libft/ft_substr.c \
+              parse.c
 
-COMMON_OBJ = $(COMMON_SRC:.c=.o)
+SRC         = push_swap.c \
+              sorting/sort_chunk.c \
+              sorting/sort_utils.c \
+              sorting/sort_small.c
 
-SRC = push_swap.c \
-      sorting/sort_chunk.c \
-      sorting/sort_utils.c \
-      sorting/sort_small.c
+BONUS_SRC   = bonus/checker_bonus.c \
+              bonus/helper_bonus.c \
+              bonus/gnl/get_next_line_bonus.c \
+              bonus/gnl/get_next_line_utils_bonus.c
 
-OBJ = $(SRC:.c=.o) $(COMMON_OBJ)
+OBJ_COMMON  = $(COMMON_SRC:.c=.o)
 
-BONUS_SRC = bonus/checker_bonus.c \
-			bonus/helper_bonus.c \
-            bonus/gnl/get_next_line_bonus.c \
-            bonus/gnl/get_next_line_utils_bonus.c
+OBJ_M       = $(SRC:.c=.o)
 
-BONUS_OBJ = $(BONUS_SRC:.c=.o)  $(COMMON_OBJ)
+OBJ_B       = $(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ_M) $(OBJ_COMMON)
+	$(CC) $(CFLAGS) $(OBJ_M) $(OBJ_COMMON) -o $(NAME)
 
-$(BONUS): $(BONUS_OBJ)
-	$(CC) $(CFLAGS) $(BONUS_OBJ) -o $(BONUS)
+$(BONUS_NAME): $(OBJ_B) $(OBJ_COMMON)
+	$(CC) $(CFLAGS) $(OBJ_B) $(OBJ_COMMON) -o $(BONUS_NAME)
 
-%.o: %.c $(INCLUDES)
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_COMMON) $(OBJ_M): $(HEADER_M)
+
+$(OBJ_B): $(HEADER_B) $(HEADER_M)
+
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ) $(COMMON_OBJ)
+	rm -f $(OBJ_M) $(OBJ_B) $(OBJ_COMMON)
 
 fclean: clean
-	rm -f $(NAME) $(BONUS)
+	rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
-bonus: $(BONUS)
+bonus: $(BONUS_NAME)
 
 .PHONY: all clean fclean re bonus

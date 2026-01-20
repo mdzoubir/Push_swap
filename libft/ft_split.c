@@ -64,7 +64,8 @@ static int	fill_split(char **ptr, const char *s, char c)
 		else
 			i++;
 	}
-	return (ptr[counter] = NULL, 1);
+	ptr[counter] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
